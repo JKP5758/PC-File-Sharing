@@ -28,7 +28,7 @@ for ($i = 0; $i < $total_load; $i++) {
 ?>
 
 <div class="next">
-    <a href="view.php?hal=<?= $hal + 1; ?>"><span>Next</span></a>
+    <a href="view.php?hal=<?= $hal + 1; ?>"><span class="next_buton">Next</span></a>
 </div>
 
 <script>

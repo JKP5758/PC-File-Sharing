@@ -1,7 +1,17 @@
 <?php
-function resizeImage($source, $destination, $maxWidth, $maxHeight, $scale = 1.0) {
-    list($srcWidth, $srcHeight, $type) = getimagesize($source);
 
+function resizeImage($source, $destination, $maxWidth, $maxHeight, $scale = 1.0) {
+    // Mendapatkan informasi gambar
+    $imageInfo = getimagesize($source);
+
+    // Memeriksa apakah fungsi getimagesize berhasil
+    if (!$imageInfo) {
+        return false;
+    }
+
+    list($srcWidth, $srcHeight, $type) = $imageInfo;
+
+    // Membuat gambar sumber
     switch ($type) {
         case IMAGETYPE_JPEG:
             $srcImage = imagecreatefromjpeg($source);
@@ -16,13 +26,16 @@ function resizeImage($source, $destination, $maxWidth, $maxHeight, $scale = 1.0)
             return false;
     }
 
-    // Check if scale is provided and adjust dimensions accordingly
-    if ($scale !== 1.0) {
-        $srcWidth *= $scale;
-        $srcHeight *= $scale;
+    // Memeriksa apakah skala valid
+    if ($scale <= 0 || $scale > 1) {
+        return false;
     }
 
+    // Menghitung dimensi baru
+    $srcWidth *= $scale;
+    $srcHeight *= $scale;
     $aspectRatio = $srcWidth / $srcHeight;
+
     if ($srcWidth <= $maxWidth && $srcHeight <= $maxHeight) {
         $newWidth = $srcWidth;
         $newHeight = $srcHeight;
@@ -34,14 +47,19 @@ function resizeImage($source, $destination, $maxWidth, $maxHeight, $scale = 1.0)
         $newHeight = $maxWidth / $aspectRatio;
     }
 
+    // Membuat gambar tujuan
     $dstImage = imagecreatetruecolor($newWidth, $newHeight);
+
+    // Meresample gambar
     imagecopyresampled($dstImage, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $srcWidth, $srcHeight);
 
+    // Menyimpan gambar tujuan
     switch ($type) {
         case IMAGETYPE_JPEG:
             imagejpeg($dstImage, $destination);
             break;
         case IMAGETYPE_PNG:
+            // Menyimpan gambar PNG dengan kualitas maksimum untuk menghindari peringatan
             imagepng($dstImage, $destination);
             break;
         case IMAGETYPE_GIF:
@@ -49,9 +67,11 @@ function resizeImage($source, $destination, $maxWidth, $maxHeight, $scale = 1.0)
             break;
     }
 
+    // Menghapus gambar sumber dan tujuan
     imagedestroy($srcImage);
     imagedestroy($dstImage);
 
     return true;
 }
+
 ?>

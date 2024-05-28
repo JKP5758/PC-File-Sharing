@@ -13,6 +13,11 @@ body {
     
 }
 
+a{
+    color: white;
+    text-decoration: none;
+}
+
 /* Container styling */
 .container {
     
@@ -133,7 +138,7 @@ nav {
 .conten{
     width: 100vw;
     height: auto;
-    padding: 5vw;
+    padding: 5vw 5vw 0;
 }
 
 .conten img{
@@ -141,4 +146,38 @@ nav {
     height: auto;
     border-radius: 20px;
     box-shadow: rgb(0 0 0 / 50%) -5px 5px 10px 0px;
+}
+
+/* FOOTHER */
+
+.next{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0
+}
+
+.next a{
+    background-color: #0056b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+footer{
+    width: 100%;
+    background-color: #0056b3;
+}
+
+.coppy{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
 }

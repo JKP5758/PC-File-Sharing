@@ -12,7 +12,8 @@ $dir = "img/";
 $thumbDir = "thumbnails/"; // Direktori untuk menyimpan gambar thumbnail
 
 // Mencari semua file dengan ekstensi tertentu (misalnya .jpg)
-$files = glob($dir . "*.jpg");
+$files = glob($dir . "*.{jpg,png,jpeg}", GLOB_BRACE);
+
 
 // Membuat tabel virtual dalam memori
 $fileTable = [];
@@ -50,8 +51,20 @@ foreach ($fileTable as $file) {
             <span class="kategori">Video</span>
         </div>
     </nav>
+
     <?php 
         require_once "conten.php";
     ?>
+
+    <footer>
+        <div class="media">
+            <div class="instagram"></div>
+            <div class="whatsapp"></div>
+            <div class="github"></div>
+        </div>
+        <div class="coppy">
+        <span>Copyright&copy; 2024 Joko Purnomo</span>  <a href="https://www.freepik.com">Icon by Freepik</a>
+        </div>
+    </footer>
 </body>
 </html>
