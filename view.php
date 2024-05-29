@@ -7,11 +7,11 @@ if (!isset($_SESSION['id'])) {
 }
 
 // Berapa yang di load per halaman?
-$load = 3;
+$load = 15;
 
 require_once 'resize.php'; // Sertakan file resize.php
 
-$dir = "img/";
+$dir = "E:/USER/Pictures/Wallpaper/";
 $thumbDir = "thumbnails/"; // Direktori untuk menyimpan gambar thumbnail
 
 // Mencari semua file dengan ekstensi tertentu (misalnya .jpg)
@@ -45,6 +45,7 @@ foreach ($fileTable as $file) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>PC File</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 <body>
     <div class="wrapper">

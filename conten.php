@@ -12,6 +12,7 @@ if (isset($_GET['hal'])){
 
     if ($akhir_load > count($fileTable)) {
         $akhir_load = count($fileTable);
+        $mulai_load = count($fileTable) - 15;
         $all = true;
     }
 } else {
@@ -29,7 +30,7 @@ for ($i = $mulai_load; $i < $akhir_load; $i++) {
     $imageURL = $thumbDir . $fileTable[$i];
 ?>
     <div class="conten">
-        <a href="<?= $dir.$fileTable[$i]; ?>" target="_blank">
+        <a href="http://192.168.43.2:8080/share/Wallpaper/<?= $fileTable[$i]; ?>" target="_blank">
             <img src="<?= $imageURL ?>" alt="gambar ke-<?= $i ?>" data-url="<?= $imageURL ?>" id="img-<?= $i ?>">
         </a>
     </div>
