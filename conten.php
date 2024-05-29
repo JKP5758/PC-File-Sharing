@@ -1,25 +1,35 @@
 <?php
 if (isset($_GET['hal'])){
+    // end
     $hal = (int)$_GET['hal'];
-    $total_load = $hal * 2;
+    $akhir_load = $hal * $load;
 
-    if ($total_load > count($fileTable)) {
-        $total_load = count($fileTable);
+    //mulai
+    $hal_mulai = $hal - 1;
+    $mulai_load = $hal_mulai * $load;
+
+    $all = false;
+
+    if ($akhir_load > count($fileTable)) {
+        $akhir_load = count($fileTable);
+        $all = true;
     }
 } else {
     $hal = 1;
-    $total_load = 2;
+    $akhir_load = $load;
+    $mulai_load = 0;
+    $all = false;
 }
 
 $thumbDir = "thumbnails/";
 
-for ($i = 0; $i < $total_load; $i++) {
-    echo "Iterasi ke-$i <br>";
-    echo $fileTable[$i]. "<br>";
+for ($i = $mulai_load; $i < $akhir_load; $i++) {
+    // echo "Iterasi ke-$i <br>";
+    // echo $fileTable[$i]. "<br>";
     $imageURL = $thumbDir . $fileTable[$i];
 ?>
     <div class="conten">
-        <a href="">
+        <a href="<?= $dir.$fileTable[$i]; ?>" target="_blank">
             <img src="<?= $imageURL ?>" alt="gambar ke-<?= $i ?>" data-url="<?= $imageURL ?>" id="img-<?= $i ?>">
         </a>
     </div>
@@ -28,7 +38,15 @@ for ($i = 0; $i < $total_load; $i++) {
 ?>
 
 <div class="next">
-    <a href="view.php?hal=<?= $hal + 1; ?>"><span class="next_buton">Next</span></a>
+    <?php
+        if (isset($_GET['hal']) && $_GET['hal'] > 1){
+            echo '<a href="view.php?hal=' . ($hal - 1) . '"><span class="next_button">Previous</span></a>';
+        }
+
+        if($all == false){
+            echo '<a href="view.php?hal=' . ($hal + 1) . '"><span class="next_buton">Next</span></a>';
+        }
+    ?>
 </div>
 
 <script>

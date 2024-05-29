@@ -6,6 +6,9 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
+// Berapa yang di load per halaman?
+$load = 3;
+
 require_once 'resize.php'; // Sertakan file resize.php
 
 $dir = "img/";
@@ -44,27 +47,32 @@ foreach ($fileTable as $file) {
     <title>PC File</title>
 </head>
 <body>
-    <nav>
-        <div class="logo"><img src="img/logo.png" alt="logo"></div>
-        <div class="file">
-            <span class="kategori">Wallpaper</span>
-            <span class="kategori">Video</span>
-        </div>
-    </nav>
+    <div class="wrapper">
+        <nav>
+            <div class="logo"><img src="img/logo.png" alt="logo"></div>
+            <div class="file">
+                <span class="kategori">Wallpaper</span>
+                <!-- <span class="kategori">Video</span> -->
+            </div>
+        </nav>
 
-    <?php 
-        require_once "conten.php";
-    ?>
-
-    <footer>
-        <div class="media">
-            <div class="instagram"></div>
-            <div class="whatsapp"></div>
-            <div class="github"></div>
-        </div>
-        <div class="coppy">
-        <span>Copyright&copy; 2024 Joko Purnomo</span>  <a href="https://www.freepik.com">Icon by Freepik</a>
-        </div>
-    </footer>
+        <main>
+            <?php 
+                require_once "conten.php";
+            ?>
+        </main>
+        
+        <footer>
+            <div class="media">
+                <div class="instagram"></div>
+                <div class="whatsapp"></div>
+                <div class="github"></div>
+            </div>
+            <div class="coppy">
+            <span>Copyright&copy; 2024 Joko Purnomo</span>  <a href="https://www.freepik.com">Icon by Freepik</a>
+            </div>
+        </footer>
+    </div>
+    
 </body>
 </html>
